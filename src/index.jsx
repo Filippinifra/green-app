@@ -11,6 +11,8 @@ import {
   PATH_HOME,
 } from "constants/path";
 
+import { MAP_PATH_TO_COLORS } from "constants/config";
+
 const Tab = createBottomTabNavigator();
 
 export const Code = () => (
@@ -23,11 +25,16 @@ export const Code = () => (
         const Component = MAP_PATH_TO_COMPONENTS[value];
         return (
           <Tab.Screen name={value}>
-            {({ route }) => (
-              <MainLayout nameRoute={route.name}>
-                <Component />
-              </MainLayout>
-            )}
+            {({ route }) => {
+              const nameRoute = route.name;
+              const color = MAP_PATH_TO_COLORS[nameRoute];
+
+              return (
+                <MainLayout nameRoute={nameRoute} color={color}>
+                  <Component color={color} />
+                </MainLayout>
+              );
+            }}
           </Tab.Screen>
         );
       })}
