@@ -14,7 +14,7 @@ export const InfoWrapper = styled.View`
 
 export const ViewMoreButtonWrapper = styled.View`
   padding: 10px 30px;
-  background-color: ${FIRST_COLOR};
+  background-color: ${({ color }) => color};
   border-radius: 20px;
   align-items: center;
   justify-content: center;
