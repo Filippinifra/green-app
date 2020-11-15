@@ -1,5 +1,47 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+import { COMMON_THIRD_COLOR } from "constants/palette";
 
 export const Wrapper = styled.ScrollView`
-  padding: 25px 35px;
+  padding: 30px 35px;
+`;
+
+export const Square = styled.View`
+  background-color: ${({ color }) => color};
+  border-radius: 20px;
+  padding: 20px;
+  ${({ height }) =>
+    height &&
+    css`
+      height: ${height}px;
+    `};
+`;
+
+export const WrapperBoxesInRow = styled.View`
+  flex-direction: row;
+  padding-top: ${({ gridGap }) => gridGap};
+`;
+
+export const CentrateElement = styled.View`
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`;
+
+export const Tips = styled.Text`
+  color: ${COMMON_THIRD_COLOR};
+  font-size: 15;
+  font-weight: 600;
+`;
+
+export const BigLabel = styled.Text`
+  color: ${COMMON_THIRD_COLOR};
+  font-size: 30;
+  font-weight: 800;
+`;
+
+export const SubText = styled.Text`
+  color: ${COMMON_THIRD_COLOR};
+  font-size: 16;
+  font-weight: 600;
 `;
