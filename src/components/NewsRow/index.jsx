@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Linking } from "react-native";
-import { FIFTH_COLOR } from "constants/palette";
+import { COMMON_THIRD_COLOR } from "constants/palette";
 import { NewsImage, InfoWrapper, ViewMoreButtonWrapper } from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Badge } from "components/Badge";
@@ -51,7 +51,7 @@ export const NewsRow = ({
             <View style={{ width: 200, alignSelf: "center" }}>
               <TouchableOpacity onPress={() => Linking.openURL(url)}>
                 <ViewMoreButtonWrapper color={color}>
-                  <Text style={{ fontSize: 14, color: FIFTH_COLOR }}>
+                  <Text style={{ fontSize: 14, color: COMMON_THIRD_COLOR }}>
                     View more
                   </Text>
                 </ViewMoreButtonWrapper>

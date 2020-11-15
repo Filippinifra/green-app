@@ -1,6 +1,6 @@
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { FIFTH_COLOR, SIXTH_COLOR } from "constants/palette";
+import { COMMON_THIRD_COLOR, COMMON_FOURTH_COLOR } from "constants/palette";
 import { WrapperBottomBar, ItemContainer, TextItem } from "./styles";
 import { Icon } from "react-native-elements";
 import { DISPOSITON_PATH, PATH_HOME, PATH_NEWS } from "constants/path";
@@ -21,10 +21,18 @@ export const BottomBar = ({ navigation, state }) => {
         <ItemContainer>
           <Icon
             name="equalizer"
-            color={currentPath === PATH_HOME ? FIFTH_COLOR : SIXTH_COLOR}
+            color={
+              currentPath === PATH_HOME
+                ? COMMON_THIRD_COLOR
+                : COMMON_FOURTH_COLOR
+            }
           />
           <TextItem
-            colorText={currentPath === PATH_HOME ? FIFTH_COLOR : SIXTH_COLOR}
+            colorText={
+              currentPath === PATH_HOME
+                ? COMMON_THIRD_COLOR
+                : COMMON_FOURTH_COLOR
+            }
           >
             HOME
           </TextItem>
@@ -34,10 +42,18 @@ export const BottomBar = ({ navigation, state }) => {
         <ItemContainer>
           <Icon
             name="public"
-            color={currentPath === PATH_NEWS ? FIFTH_COLOR : SIXTH_COLOR}
+            color={
+              currentPath === PATH_NEWS
+                ? COMMON_THIRD_COLOR
+                : COMMON_FOURTH_COLOR
+            }
           />
           <TextItem
-            colorText={currentPath === PATH_NEWS ? FIFTH_COLOR : SIXTH_COLOR}
+            colorText={
+              currentPath === PATH_NEWS
+                ? COMMON_THIRD_COLOR
+                : COMMON_FOURTH_COLOR
+            }
           >
             NEWS
           </TextItem>

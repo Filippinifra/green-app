@@ -23,15 +23,16 @@ export const Code = () => (
     >
       {DISPOSITON_PATH.map((value) => {
         const Component = MAP_PATH_TO_COMPONENTS[value];
+
         return (
           <Tab.Screen name={value}>
             {({ route }) => {
               const nameRoute = route.name;
-              const color = MAP_PATH_TO_COLORS[nameRoute];
+              const { mainColor, secondColor } = MAP_PATH_TO_COLORS[nameRoute];
 
               return (
-                <MainLayout nameRoute={nameRoute} color={color}>
-                  <Component color={color} />
+                <MainLayout nameRoute={nameRoute} colorHeader={mainColor}>
+                  <Component mainColor={mainColor} secondColor={secondColor} />
                 </MainLayout>
               );
             }}
