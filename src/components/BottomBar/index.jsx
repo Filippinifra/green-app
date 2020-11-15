@@ -17,27 +17,6 @@ export const BottomBar = ({ navigation, state }) => {
       botHeaderHeight={bottomSafeAreaHeight}
       height={HEIGHT_BOTTOM_NAVIGATOR + bottomSafeAreaHeight}
     >
-      <TouchableOpacity onPress={() => navigation.navigate(PATH_HOME)}>
-        <ItemContainer>
-          <Icon
-            name="equalizer"
-            color={
-              currentPath === PATH_HOME
-                ? COMMON_THIRD_COLOR
-                : COMMON_FOURTH_COLOR
-            }
-          />
-          <TextItem
-            colorText={
-              currentPath === PATH_HOME
-                ? COMMON_THIRD_COLOR
-                : COMMON_FOURTH_COLOR
-            }
-          >
-            HOME
-          </TextItem>
-        </ItemContainer>
-      </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate(PATH_NEWS)}>
         <ItemContainer>
           <Icon
@@ -56,6 +35,27 @@ export const BottomBar = ({ navigation, state }) => {
             }
           >
             NEWS
+          </TextItem>
+        </ItemContainer>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate(PATH_HOME)}>
+        <ItemContainer>
+          <Icon
+            name="equalizer"
+            color={
+              currentPath === PATH_HOME
+                ? COMMON_THIRD_COLOR
+                : COMMON_FOURTH_COLOR
+            }
+          />
+          <TextItem
+            colorText={
+              currentPath === PATH_HOME
+                ? COMMON_THIRD_COLOR
+                : COMMON_FOURTH_COLOR
+            }
+          >
+            HOME
           </TextItem>
         </ItemContainer>
       </TouchableOpacity>
