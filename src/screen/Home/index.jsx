@@ -4,9 +4,9 @@ import { data } from "./mock";
 import { Badge } from "components/Badge";
 import { Wrapper } from "./styles";
 
-export const Home = ({ color }) => (
+export const Home = ({ mainColor, secondColor }) => (
   <Wrapper>
-    <Badge color={color} title="Consumi giornalieri nazionali">
+    <Badge color={secondColor} title="Consumi giornalieri nazionali">
       <ChartLine data={data} height={300} />
     </Badge>
   </Wrapper>

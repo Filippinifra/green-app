@@ -4,14 +4,14 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import { FIFTH_COLOR } from "constants/palette";
+import { COMMON_THIRD_COLOR } from "constants/palette";
 import {
   HEIGHT_BOTTOM_NAVIGATOR,
   HEIGHT_TOP_TITLE_ROUTE_NAME,
 } from "constants/config";
 import { Title } from "./styles";
 
-export const MainLayout = ({ children, nameRoute, color }) => {
+export const MainLayout = ({ children, nameRoute, colorHeader }) => {
   const insets = useSafeAreaInsets();
   const { height } = Dimensions.get("window");
   const ViewHeight =
@@ -22,7 +22,7 @@ export const MainLayout = ({ children, nameRoute, color }) => {
       HEIGHT_TOP_TITLE_ROUTE_NAME);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: color }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colorHeader }}>
       <View
         style={{
           height: HEIGHT_TOP_TITLE_ROUTE_NAME,
@@ -35,7 +35,7 @@ export const MainLayout = ({ children, nameRoute, color }) => {
       <View
         style={{
           height: ViewHeight,
-          backgroundColor: FIFTH_COLOR,
+          backgroundColor: COMMON_THIRD_COLOR,
         }}
       >
         {children}

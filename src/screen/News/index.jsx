@@ -5,13 +5,13 @@ import { ScrollView } from "react-native-gesture-handler";
 import { mock } from "./mock";
 import { View } from "react-native";
 
-export const News = ({ color }) => (
+export const News = ({ mainColor, secondColor }) => (
   <ScrollView>
     <View style={{ marginBottom: 20, marginTop: 20 }}>
       {mock.map(({ title, description, url, minReading, image }) => (
         <NewsWrapper>
           <NewsRow
-            color={color}
+            color={secondColor}
             title={title}
             description={description}
             image={image}
