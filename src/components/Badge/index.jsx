@@ -1,23 +1,10 @@
 import React from "react";
 import { BadgeWrapper, HeaderWrapper, Title } from "./styles";
-import { StyleSheet, View } from "react-native";
-
-const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 3.84,
-
-    elevation: 5,
-  },
-});
+import { View } from "react-native";
+import { ShadowStyle } from "components/Shadow";
 
 export const Badge = ({ children, title, color }) => (
-  <View style={styles.shadow}>
+  <View style={ShadowStyle.ShadowBox}>
     <BadgeWrapper color={color}>
       <View>
         <HeaderWrapper color={color} s>

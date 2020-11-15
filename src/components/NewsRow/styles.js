@@ -4,7 +4,7 @@ import { COMMON_FIFTH_COLOR, FIRST_COLOR } from "constants/palette";
 export const NewsImage = styled.Image`
   height: 60px;
   width: 60px;
-  border-radius: 10;
+  border-radius: 10px;
   background-color: ${COMMON_FIFTH_COLOR};
 `;
 
