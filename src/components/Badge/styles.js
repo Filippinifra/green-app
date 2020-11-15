@@ -11,6 +11,8 @@ export const BadgeWrapper = styled.View`
 export const HeaderWrapper = styled.View`
   padding: 15px 10px;
   background-color: ${({ color }) => color};
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 `;
 
 export const Title = styled.Text`
