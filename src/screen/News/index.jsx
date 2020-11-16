@@ -8,14 +8,13 @@ import { View } from "react-native";
 export const News = ({ mainColor, secondColor }) => (
   <ScrollView>
     <View style={{ marginBottom: 20, marginTop: 20 }}>
-      {mock.map(({ title, description, url, minReading, image }) => (
+      {mock.map(({ title, description, url, image }) => (
         <NewsWrapper>
           <NewsRow
             color={secondColor}
             title={title}
             description={description}
             image={image}
-            minReading={minReading}
             url={url}
           />
         </NewsWrapper>

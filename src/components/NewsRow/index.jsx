@@ -5,14 +5,7 @@ import { NewsImage, InfoWrapper, ViewMoreButtonWrapper } from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Badge } from "components/Badge";
 
-export const NewsRow = ({
-  title,
-  description,
-  image,
-  minReading,
-  url,
-  color,
-}) => {
+export const NewsRow = ({ title, description, image, url, color }) => {
   const [isOpen, setIsOpen] = useState(false);
   const numberOfLines = isOpen ? 10 : 3;
 
@@ -31,13 +24,13 @@ export const NewsRow = ({
               <Text style={{ fontSize: 14 }} numberOfLines={numberOfLines}>
                 {description}
               </Text>
-              <Text
+              {/* <Text
                 style={{
                   marginTop: 5,
                   fontSize: 9,
                   color,
                 }}
-              >{`${minReading} min`}</Text>
+              >{`${minReading} min`}</Text> */}
             </InfoWrapper>
             <View
               style={{
