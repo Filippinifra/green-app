@@ -12,6 +12,7 @@ module.exports = function (api) {
             constants: "./src/constants",
             components: "./src/components",
             screen: "./src/screen",
+            text: "./src/text",
           },
         },
       ],

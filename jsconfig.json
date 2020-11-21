@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "constants": ["./src/constants/*"],
+      "components": ["./src/components/*"],
+      "screen": ["./src/screen/*"],
+      "text": ["./src/text/*"]
+    }
+  },
+  "exclude": ["node_modules", ".expo", ".expo-shared", ".vscode"]
+}
