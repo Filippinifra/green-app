@@ -10,7 +10,7 @@ export const NewsRow = ({ title, description, image, url, color }) => {
   const numberOfLines = isOpen ? 10 : 3;
 
   return (
-    <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
+    <TouchableOpacity onPress={() => setIsOpen(!isOpen)} activeOpacity={1}>
       <Badge color={color} title={title}>
         <View style={{ padding: 10 }}>
           <View

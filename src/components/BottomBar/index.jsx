@@ -17,7 +17,10 @@ export const BottomBar = ({ navigation, state }) => {
       botHeaderHeight={bottomSafeAreaHeight}
       height={HEIGHT_BOTTOM_NAVIGATOR + bottomSafeAreaHeight}
     >
-      <TouchableOpacity onPress={() => navigation.navigate(PATH_NEWS)}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate(PATH_NEWS)}
+        activeOpacity={1}
+      >
         <ItemContainer>
           <Icon
             name="public"
