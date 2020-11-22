@@ -3,6 +3,7 @@ export const COMMON_SECOND_COLOR = "#3D3D3D";
 export const COMMON_THIRD_COLOR = "#ffffff";
 export const COMMON_FOURTH_COLOR = "#777777";
 export const COMMON_FIFTH_COLOR = "lightgray";
+export const COMMON_ERROR_COLOR = "red";
 
 export const FIRST_COLOR = "#1E8BD9"; //BLUE
 export const SECOND_COLOR = "#90BEDE";

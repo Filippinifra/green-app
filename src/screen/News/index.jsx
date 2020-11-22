@@ -5,6 +5,7 @@ import { FlatList, RefreshControl, View } from "react-native";
 import { useSWRInfinite } from "swr";
 import { NEWS_ENDPOINT } from "constants/endpoint";
 import _ from "lodash";
+import { LoadAndError } from "components/LoadAndError";
 
 const fetcher = (url) =>
   fetch(url).then((res) => {
@@ -14,7 +15,7 @@ const fetcher = (url) =>
 export const News = ({ mainColor, secondColor }) => {
   const [refreshing, setRefreshing] = useState(false);
 
-  const { data, mutate, size, setSize } = useSWRInfinite(
+  const { data, mutate, size, setSize, error } = useSWRInfinite(
     (index) => `${NEWS_ENDPOINT}?page=${index}`,
     fetcher
   );
@@ -35,26 +36,28 @@ export const News = ({ mainColor, secondColor }) => {
     desc.split("/a>")[1].substr(0, desc.split("/a>")[1].length - 4);
 
   return (
-    <FlatList
-      data={news}
-      renderItem={({ item: { title, description, url, image }, item }) => (
-        <NewsWrapper>
-          <NewsRow
-            color={secondColor}
-            title={title}
-            description={cleanTempDescription(description)}
-            image={image}
-            url={url}
-          />
-        </NewsWrapper>
-      )}
-      onEndReached={loadMore}
-      refreshControl={
-        <View style={{ top: 20 }}>
-          <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
-        </View>
-      }
-      contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
-    />
+    <LoadAndError error={error} data={data} color={mainColor}>
+      <FlatList
+        data={news}
+        renderItem={({ item: { title, description, url, image }, item }) => (
+          <NewsWrapper>
+            <NewsRow
+              color={secondColor}
+              title={title}
+              description={cleanTempDescription(description)}
+              image={image}
+              url={url}
+            />
+          </NewsWrapper>
+        )}
+        onEndReached={loadMore}
+        refreshControl={
+          <View style={{ top: 20 }}>
+            <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
+          </View>
+        }
+        contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
+      />
+    </LoadAndError>
   );
 };
