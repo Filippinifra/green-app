@@ -17,21 +17,22 @@ export const Code = () => (
       tabBar={(props) => <BottomBar {...props} />}
     >
       {DISPOSITON_PATH.map((path) => {
-        const { Component } = MAP_PATH_TO_CONFIG[path];
+        const {
+          Component,
+          tabTitle,
+          mainColor,
+          secondColor,
+        } = MAP_PATH_TO_CONFIG[path];
 
         return (
-          <Tab.Screen name={path}>
-            {({ route }) => {
-              const nameRoute = route.name;
-              const { mainColor, secondColor } = MAP_PATH_TO_CONFIG[nameRoute];
-
-              return (
-                <MainLayout nameRoute={nameRoute} colorHeader={mainColor}>
-                  <Component mainColor={mainColor} secondColor={secondColor} />
-                </MainLayout>
-              );
-            }}
-          </Tab.Screen>
+          <Tab.Screen
+            name={path}
+            component={() => (
+              <MainLayout nameRoute={tabTitle} colorHeader={mainColor}>
+                <Component mainColor={mainColor} secondColor={secondColor} />
+              </MainLayout>
+            )}
+          />
         );
       })}
     </Tab.Navigator>
