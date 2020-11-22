@@ -3,9 +3,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { COMMON_THIRD_COLOR, COMMON_FOURTH_COLOR } from "constants/palette";
 import { WrapperBottomBar, ItemContainer, TextItem } from "./styles";
 import { Icon } from "react-native-elements";
-import { DISPOSITON_PATH, PATH_HOME, PATH_NEWS } from "constants/path";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { HEIGHT_BOTTOM_NAVIGATOR } from "constants/config";
+import {
+  HEIGHT_BOTTOM_NAVIGATOR,
+  MAP_PATH_TO_CONFIG,
+  DISPOSITON_PATH,
+} from "constants/config";
 
 export const BottomBar = ({ navigation, state }) => {
   const insets = useSafeAreaInsets();
@@ -17,51 +20,36 @@ export const BottomBar = ({ navigation, state }) => {
       botHeaderHeight={bottomSafeAreaHeight}
       height={HEIGHT_BOTTOM_NAVIGATOR + bottomSafeAreaHeight}
     >
-      <TouchableOpacity
-        onPress={() => navigation.navigate(PATH_NEWS)}
-        activeOpacity={1}
-      >
-        <ItemContainer>
-          <Icon
-            name="public"
-            color={
-              currentPath === PATH_NEWS
-                ? COMMON_THIRD_COLOR
-                : COMMON_FOURTH_COLOR
-            }
-          />
-          <TextItem
-            colorText={
-              currentPath === PATH_NEWS
-                ? COMMON_THIRD_COLOR
-                : COMMON_FOURTH_COLOR
-            }
+      {DISPOSITON_PATH.map((path) => {
+        const { iconName, tabTitle } = MAP_PATH_TO_CONFIG[path];
+
+        return (
+          <TouchableOpacity
+            onPress={() => navigation.navigate(path)}
+            activeOpacity={1}
           >
-            NEWS
-          </TextItem>
-        </ItemContainer>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate(PATH_HOME)}>
-        <ItemContainer>
-          <Icon
-            name="equalizer"
-            color={
-              currentPath === PATH_HOME
-                ? COMMON_THIRD_COLOR
-                : COMMON_FOURTH_COLOR
-            }
-          />
-          <TextItem
-            colorText={
-              currentPath === PATH_HOME
-                ? COMMON_THIRD_COLOR
-                : COMMON_FOURTH_COLOR
-            }
-          >
-            HOME
-          </TextItem>
-        </ItemContainer>
-      </TouchableOpacity>
+            <ItemContainer>
+              <Icon
+                name={iconName}
+                color={
+                  currentPath === path
+                    ? COMMON_THIRD_COLOR
+                    : COMMON_FOURTH_COLOR
+                }
+              />
+              <TextItem
+                colorText={
+                  currentPath === path
+                    ? COMMON_THIRD_COLOR
+                    : COMMON_FOURTH_COLOR
+                }
+              >
+                {tabTitle}
+              </TextItem>
+            </ItemContainer>
+          </TouchableOpacity>
+        );
+      })}
     </WrapperBottomBar>
   );
 };
