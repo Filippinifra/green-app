@@ -38,6 +38,8 @@ export const DISPOSITON_PATH = [PATH_NEWS, PATH_HOME];
 
 export const LANGUAGES = ["en", "it"];
 
+export const DEFAULT_LANG = "en";
+
 export const MAP_LANGUAGES_TO_FLAGS = {
   en: EnFlag,
   it: ItFlag,

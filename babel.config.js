@@ -14,6 +14,7 @@ module.exports = function (api) {
             screen: "./src/screen",
             text: "./src/text",
             images: "./src/images",
+            utils: "./src/utils",
           },
         },
       ],

@@ -6,7 +6,8 @@
       "components": ["./src/components"],
       "screen": ["./src/screen"],
       "text": ["./src/text"],
-      "images": ["./src/images"]
+      "images": ["./src/images"],
+      "utils": ["./src/utils"]
     }
   },
   "exclude": ["node_modules", ".expo", ".expo-shared", ".vscode"]
