@@ -13,6 +13,7 @@ module.exports = function (api) {
             components: "./src/components",
             screen: "./src/screen",
             text: "./src/text",
+            images: "./src/images",
           },
         },
       ],

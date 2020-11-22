@@ -8,6 +8,8 @@ import { BottomBar } from "components/BottomBar";
 import { PATH_HOME } from "constants/path";
 import { MAP_PATH_TO_CONFIG, DISPOSITON_PATH } from "constants/config";
 
+import "text/i18n";
+
 const Tab = createBottomTabNavigator();
 
 export const Code = () => (

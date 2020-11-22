@@ -1,9 +1,12 @@
 import React from "react";
 import { COMMON_FIFTH_COLOR, COMMON_ERROR_COLOR } from "constants/palette";
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, Text } from "react-native";
 import { CentrateView } from "./styles";
+import { useTranslation } from "react-i18next";
 
 export const LoadAndError = ({ data, error, color, children }) => {
+  const { t } = useTranslation();
+
   if (!data && !error) {
     return (
       <CentrateView>
@@ -20,7 +23,7 @@ export const LoadAndError = ({ data, error, color, children }) => {
     return (
       <CentrateView>
         <Text style={{ color: COMMON_ERROR_COLOR }}>
-          {"An error occoured!"}
+          {t("general.errorOccoured")}
         </Text>
       </CentrateView>
     );
