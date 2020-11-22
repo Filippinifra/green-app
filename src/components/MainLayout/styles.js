@@ -14,12 +14,3 @@ export const RightBoxHeader = styled.View`
   width: 25px;
   margin-right: 18px;
 `;
-
-export const FlagImage = styled.Image`
-  border-color: ${COMMON_THIRD_COLOR};
-  border-width: 2px;
-  background-color: ${COMMON_THIRD_COLOR};
-  width: 100%;
-  height: 100%;
-  border-radius: 50px;
-`;

@@ -36,7 +36,7 @@ export const News = ({ mainColor, secondColor }) => {
     desc.split("/a>")[1].substr(0, desc.split("/a>")[1].length - 4);
 
   return (
-    <LoadAndError error={true} data={data} color={mainColor}>
+    <LoadAndError error={error} data={data} color={mainColor}>
       <FlatList
         data={news}
         renderItem={({ item: { title, description, url, image }, item }) => (

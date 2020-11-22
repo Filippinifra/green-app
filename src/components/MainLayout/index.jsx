@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { Dimensions, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { Dimensions, View } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -8,18 +8,11 @@ import { COMMON_THIRD_COLOR } from "constants/palette";
 import {
   HEIGHT_BOTTOM_NAVIGATOR,
   HEIGHT_TOP_TITLE_ROUTE_NAME,
-  LANGUAGES,
-  MAP_LANGUAGES_TO_FLAGS,
 } from "constants/config";
-import { Title, RightBoxHeader, FlagImage } from "./styles";
-import i18n from "text/i18n";
+import { Title, RightBoxHeader } from "./styles";
+import { FlagChangeBox } from "components/FlagChangeBox";
 
 export const MainLayout = ({ children, nameRoute, colorHeader }) => {
-  const currentLang = i18n.language;
-  const [flagNation, setFlagNation] = useState(
-    MAP_LANGUAGES_TO_FLAGS[currentLang]
-  );
-
   const insets = useSafeAreaInsets();
   const { height } = Dimensions.get("window");
   const ViewHeight =
@@ -28,28 +21,6 @@ export const MainLayout = ({ children, nameRoute, colorHeader }) => {
       insets.bottom +
       insets.top +
       HEIGHT_TOP_TITLE_ROUTE_NAME);
-
-  const changeLang = () => {
-    const currentLang = i18n.language;
-    const indexLang = LANGUAGES.indexOf(currentLang);
-    if (indexLang === LANGUAGES.length - 1) {
-      const newLang = LANGUAGES[0];
-      setFlagNation(MAP_LANGUAGES_TO_FLAGS[newLang]);
-      i18n.changeLanguage(newLang);
-    } else {
-      const newLang = LANGUAGES[indexLang + 1];
-      setFlagNation(MAP_LANGUAGES_TO_FLAGS[newLang]);
-      i18n.changeLanguage(newLang);
-    }
-  };
-
-  const FlagBox = () => (
-    <RightBoxHeader>
-      <TouchableOpacity onPress={changeLang} activeOpacity={1}>
-        <FlagImage source={flagNation} />
-      </TouchableOpacity>
-    </RightBoxHeader>
-  );
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colorHeader }}>
@@ -61,7 +32,9 @@ export const MainLayout = ({ children, nameRoute, colorHeader }) => {
         }}
       >
         <Title>{nameRoute.toUpperCase()}</Title>
-        <FlagBox />
+        <RightBoxHeader>
+          <FlagChangeBox />
+        </RightBoxHeader>
       </View>
       <View
         style={{
