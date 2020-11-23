@@ -44,4 +44,5 @@ export const SubText = styled.Text`
   color: ${COMMON_THIRD_COLOR};
   font-size: 16;
   font-weight: 600;
+  text-align: center;
 `;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COMMON_FIFTH_COLOR, FIRST_COLOR } from "constants/palette";
+import { COMMON_FIFTH_COLOR } from "constants/palette";
 
 export const NewsImage = styled.Image`
   height: 60px;

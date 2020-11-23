@@ -14,11 +14,14 @@ import {
 import { View, ScrollView } from "react-native";
 import { ShadowStyle } from "components/Shadow";
 import { EcoTips } from "text/tips";
+import { useTranslation } from "react-i18next";
 
 const GridGap = 20;
 
 export const Home = ({ mainColor, secondColor }) => {
   const [heightBox, setHeightBox] = useState(0);
+
+  const { t } = useTranslation();
 
   const onLayoutSquare = (event) => {
     const { width } = event.nativeEvent.layout;
@@ -31,7 +34,7 @@ export const Home = ({ mainColor, secondColor }) => {
   return (
     <ScrollView>
       <Wrapper>
-        <Badge color={secondColor} title="Consumi giornalieri nazionali">
+        <Badge color={secondColor} title={t("home.maxDailyConsumption")}>
           <ChartLine data={hoursAndEnergy} height={300} />
         </Badge>
         <WrapperBoxesInRow gridGap={GridGap}>
@@ -46,7 +49,9 @@ export const Home = ({ mainColor, secondColor }) => {
             >
               <CentrateElement>
                 <BigLabel style={{ marginTop: 20 }}>{max}</BigLabel>
-                <SubText style={{ marginTop: 10 }}>MAX consumi</SubText>
+                <SubText style={{ marginTop: 10 }}>
+                  {t("home.maxConsumption")}
+                </SubText>
               </CentrateElement>
             </Square>
           </View>
@@ -58,7 +63,9 @@ export const Home = ({ mainColor, secondColor }) => {
             >
               <CentrateElement>
                 <BigLabel style={{ marginTop: 20 }}>{min}</BigLabel>
-                <SubText style={{ marginTop: 10 }}>min consumi</SubText>
+                <SubText style={{ marginTop: 10 }}>
+                  {t("home.minConsumption")}
+                </SubText>
               </CentrateElement>
             </Square>
           </View>

@@ -4,9 +4,12 @@ import { COMMON_THIRD_COLOR } from "constants/palette";
 import { NewsImage, InfoWrapper, ViewMoreButtonWrapper } from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Badge } from "components/Badge";
+import { useTranslation } from "react-i18next";
 
 export const NewsRow = ({ title, description, image, url, color }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { t } = useTranslation();
   const numberOfLines = isOpen ? 10 : 3;
 
   return (
@@ -45,7 +48,7 @@ export const NewsRow = ({ title, description, image, url, color }) => {
               <TouchableOpacity onPress={() => Linking.openURL(url)}>
                 <ViewMoreButtonWrapper color={color}>
                   <Text style={{ fontSize: 14, color: COMMON_THIRD_COLOR }}>
-                    View more
+                    {t("news.viewMore")}
                   </Text>
                 </ViewMoreButtonWrapper>
               </TouchableOpacity>

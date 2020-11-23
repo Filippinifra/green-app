@@ -7,11 +7,23 @@ i18n.use(initReactI18next).init({
     en: {
       translation: {
         general: { errorOccoured: "An error occoured" },
+        news: { viewMore: "View more" },
+        home: {
+          maxConsumption: "MAX consumption",
+          minConsumption: "Min consumption",
+          maxDailyConsumption: "National daily consumption",
+        },
       },
     },
     it: {
       translation: {
         general: { errorOccoured: "Qualcosa è andato storto" },
+        news: { viewMore: "Leggi di più" },
+        home: {
+          maxConsumption: "MAX consumi",
+          minConsumption: "Min consumi",
+          maxDailyConsumption: "Consumi giornalieri nazionali",
+        },
       },
     },
   },
