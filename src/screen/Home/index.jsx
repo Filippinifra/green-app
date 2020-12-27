@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { ChartLine } from "components/ChartLine";
 import { data } from "./mock";
 import { Badge } from "components/Badge";
@@ -31,11 +31,16 @@ export const Home = ({ mainColor, secondColor }) => {
 
   const { hoursAndEnergy, max, min } = data;
 
+  const chartMemoized = useMemo(
+    () => <ChartLine data={hoursAndEnergy} height={300} />,
+    [hoursAndEnergy]
+  );
+
   return (
     <ScrollView>
       <Wrapper>
         <Badge color={secondColor} title={t("home.maxDailyConsumption")}>
-          <ChartLine data={hoursAndEnergy} height={300} />
+          {chartMemoized}
         </Badge>
         <WrapperBoxesInRow gridGap={GridGap}>
           <View
