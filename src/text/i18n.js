@@ -1,6 +1,7 @@
 import { DEFAULT_LANG } from "constants/config";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { ecoTips } from "./tips";
 
 i18n.use(initReactI18next).init({
   initImmediate: false,
@@ -15,6 +16,7 @@ i18n.use(initReactI18next).init({
           minConsumption: "Min consumption",
           maxDailyConsumption: "National daily consumption",
         },
+        ecoTips: ecoTips.en,
       },
     },
     it: {
@@ -26,6 +28,7 @@ i18n.use(initReactI18next).init({
           minConsumption: "Min consumi",
           maxDailyConsumption: "Consumi giornalieri nazionali",
         },
+        ecoTips: ecoTips.it,
       },
     },
   },

@@ -75,7 +75,7 @@ export const Home = ({ mainColor, secondColor }) => {
             </Square>
           </View>
         </WrapperBoxesInRow>
-        {EcoTips.map((text, index) => (
+        {t("ecoTips", { returnObjects: true }).map((text, index) => (
           <Square
             style={{ marginTop: GridGap, ...ShadowStyle.ShadowBox }}
             color={secondColor}
