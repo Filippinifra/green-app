@@ -11,13 +11,10 @@ import { MAP_PATH_TO_CONFIG, DISPOSITON_PATH } from "constants/config";
 import "text/i18n";
 import { getStorageItem, STORAGE_LANG_KEY } from "utils/storage";
 import i18n from "text/i18n";
-import { useTranslation } from "react-i18next";
 
 const Tab = createBottomTabNavigator();
 
 export const Code = () => {
-  const { t } = useTranslation();
-
   useEffect(() => {
     getStorageItem(STORAGE_LANG_KEY, (value) => {
       i18n.changeLanguage(value);
@@ -30,7 +27,7 @@ export const Code = () => {
         initialRouteName={PATH_HOME}
         tabBar={(props) => <BottomBar {...props} />}
       >
-        {DISPOSITON_PATH.map((path) => {
+        {DISPOSITON_PATH.map((path, index) => {
           const {
             Component,
             tabTitle,
@@ -39,14 +36,13 @@ export const Code = () => {
           } = MAP_PATH_TO_CONFIG[path];
 
           return (
-            <Tab.Screen
-              name={path}
-              component={() => (
+            <Tab.Screen name={path} key={`tab-${index}`}>
+              {() => (
                 <MainLayout nameRoute={tabTitle} colorHeader={mainColor}>
                   <Component mainColor={mainColor} secondColor={secondColor} />
                 </MainLayout>
               )}
-            />
+            </Tab.Screen>
           );
         })}
       </Tab.Navigator>

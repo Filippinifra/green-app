@@ -19,7 +19,7 @@ export const Square = styled.View`
 
 export const WrapperBoxesInRow = styled.View`
   flex-direction: row;
-  padding-top: ${({ gridGap }) => gridGap};
+  padding-top: ${({ gridGap }) => gridGap}px;
 `;
 
 export const CentrateElement = styled.View`
@@ -30,19 +30,19 @@ export const CentrateElement = styled.View`
 
 export const Tips = styled.Text`
   color: ${COMMON_THIRD_COLOR};
-  font-size: 15;
+  font-size: 15px;
   font-weight: 600;
 `;
 
 export const BigLabel = styled.Text`
   color: ${COMMON_THIRD_COLOR};
-  font-size: 30;
+  font-size: 30px;
   font-weight: 800;
 `;
 
 export const SubText = styled.Text`
   color: ${COMMON_THIRD_COLOR};
-  font-size: 16;
+  font-size: 16px;
   font-weight: 600;
   text-align: center;
 `;

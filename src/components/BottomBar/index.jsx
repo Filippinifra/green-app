@@ -20,13 +20,14 @@ export const BottomBar = ({ navigation, state }) => {
       botHeaderHeight={bottomSafeAreaHeight}
       height={HEIGHT_BOTTOM_NAVIGATOR + bottomSafeAreaHeight}
     >
-      {DISPOSITON_PATH.map((path) => {
+      {DISPOSITON_PATH.map((path, index) => {
         const { iconName, tabTitle } = MAP_PATH_TO_CONFIG[path];
 
         return (
           <TouchableOpacity
             onPress={() => navigation.navigate(path)}
             activeOpacity={1}
+            key={`bottom-icon-${index}`}
           >
             <ItemContainer>
               <Icon

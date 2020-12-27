@@ -1,6 +1,6 @@
-import React from "react";
+import { LogBox } from "react-native";
 import { Code } from "./src";
 
-console.disableYellowBox = true;
+LogBox.ignoreAllLogs(true);
 
-export default App = () => <Code />;
+export default App = Code;

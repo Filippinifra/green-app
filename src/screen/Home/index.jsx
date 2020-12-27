@@ -75,10 +75,11 @@ export const Home = ({ mainColor, secondColor }) => {
             </Square>
           </View>
         </WrapperBoxesInRow>
-        {EcoTips.map((text) => (
+        {EcoTips.map((text, index) => (
           <Square
             style={{ marginTop: GridGap, ...ShadowStyle.ShadowBox }}
             color={secondColor}
+            key={`eco-tip-home-${index}`}
           >
             <Tips>{text}</Tips>
           </Square>
