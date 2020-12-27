@@ -1,8 +1,10 @@
+import { DEFAULT_LANG } from "constants/config";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 i18n.use(initReactI18next).init({
-  fallbackLng: "en",
+  initImmediate: false,
+  lng: DEFAULT_LANG,
   resources: {
     en: {
       translation: {
