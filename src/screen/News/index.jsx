@@ -6,11 +6,10 @@ import { useSWRInfinite } from "swr";
 import { NEWS_ENDPOINT } from "constants/endpoint";
 import _ from "lodash";
 import { LoadAndError } from "components/LoadAndError";
+import { fetcher } from "utils/fetcher";
+import { mock } from "./mock";
 
-const fetcher = (url) =>
-  fetch(url).then((res) => {
-    return res.json();
-  });
+const isMockEnabled = true;
 
 export const News = ({ mainColor, secondColor }) => {
   const [refreshing, setRefreshing] = useState(false);
@@ -36,15 +35,21 @@ export const News = ({ mainColor, secondColor }) => {
     desc.split("/a>")[1].substr(0, desc.split("/a>")[1].length - 4);
 
   return (
-    <LoadAndError error={error} data={data} color={mainColor}>
+    <LoadAndError
+      error={isMockEnabled ? null : error}
+      data={isMockEnabled ? mock : data}
+      color={mainColor}
+    >
       <FlatList
-        data={news}
-        renderItem={({ item: { title, description, url, image }, item }) => (
+        data={isMockEnabled ? mock : news}
+        renderItem={({ item: { title, description, url, image } }) => (
           <NewsWrapper>
             <NewsRow
               color={secondColor}
               title={title}
-              description={cleanTempDescription(description)}
+              description={
+                isMockEnabled ? description : cleanTempDescription(description)
+              }
               image={image}
               url={url}
             />
@@ -57,6 +62,7 @@ export const News = ({ mainColor, secondColor }) => {
           </View>
         }
         contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
+        keyExtractor={(item, index) => `news-element-${index}`}
       />
     </LoadAndError>
   );
