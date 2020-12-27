@@ -43,6 +43,10 @@ export const FlagChangeBox = () => {
     );
   }, []);
 
+  i18n.on("languageChanged", (lng) =>
+    setFlagNation(MAP_LANGUAGES_TO_FLAGS[lng])
+  );
+
   const FlagNation = useMemo(
     () => (
       <TouchableOpacity onPress={changeLang} activeOpacity={1}>
