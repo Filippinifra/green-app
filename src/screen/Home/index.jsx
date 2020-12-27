@@ -13,7 +13,6 @@ import {
 } from "./styles";
 import { View, ScrollView } from "react-native";
 import { ShadowStyle } from "components/Shadow";
-import { EcoTips } from "text/tips";
 import { useTranslation } from "react-i18next";
 
 const GridGap = 20;
