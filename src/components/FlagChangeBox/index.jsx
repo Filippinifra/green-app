@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native";
 import {
   DEFAULT_LANG,
   LANGUAGES,
@@ -12,6 +11,7 @@ import {
   setStorageItem,
   STORAGE_LANG_KEY,
 } from "utils/storage";
+import { TouchElement } from "components/TouchElement";
 
 export const FlagChangeBox = () => {
   const [flagNation, setFlagNation] = useState(null);
@@ -50,12 +50,12 @@ export const FlagChangeBox = () => {
   );
 
   return (
-    <TouchableOpacity onPress={changeLang} activeOpacity={1}>
+    <TouchElement onPress={changeLang}>
       <FlagImage
         source={flagNation}
         onLoad={() => setLoading(false)}
         style={{ opacity: loading ? 0.7 : 1 }}
       />
-    </TouchableOpacity>
+    </TouchElement>
   );
 };

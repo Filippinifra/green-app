@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, Text, Linking } from "react-native";
 import { COMMON_THIRD_COLOR } from "constants/palette";
 import { NewsImage, InfoWrapper, ViewMoreButtonWrapper } from "./styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Badge } from "components/Badge";
 import { useTranslation } from "react-i18next";
+import { TouchElement } from "components/TouchElement";
 
 export const NewsRow = ({ title, description, image, url, color }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +13,7 @@ export const NewsRow = ({ title, description, image, url, color }) => {
   const numberOfLines = isOpen ? 10 : 3;
 
   return (
-    <TouchableOpacity onPress={() => setIsOpen(!isOpen)} activeOpacity={1}>
+    <TouchElement onPress={() => setIsOpen(!isOpen)}>
       <Badge color={color} title={title}>
         <View style={{ padding: 10 }}>
           <View
@@ -45,17 +45,17 @@ export const NewsRow = ({ title, description, image, url, color }) => {
           </View>
           {isOpen && (
             <View style={{ width: 200, alignSelf: "center" }}>
-              <TouchableOpacity onPress={() => Linking.openURL(url)}>
+              <TouchElement onPress={() => Linking.openURL(url)}>
                 <ViewMoreButtonWrapper color={color}>
                   <Text style={{ fontSize: 14, color: COMMON_THIRD_COLOR }}>
                     {t("news.viewMore")}
                   </Text>
                 </ViewMoreButtonWrapper>
-              </TouchableOpacity>
+              </TouchElement>
             </View>
           )}
         </View>
       </Badge>
-    </TouchableOpacity>
+    </TouchElement>
   );
 };
