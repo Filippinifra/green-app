@@ -26,7 +26,6 @@ export const BottomBar = ({ navigation, state }) => {
         return (
           <TouchElement
             onPress={() => navigation.navigate(path)}
-            activeOpacity={1}
             key={`bottom-icon-${index}`}
           >
             <ItemContainer>
