@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import {
   DEFAULT_LANG,
@@ -15,6 +15,7 @@ import {
 
 export const FlagChangeBox = () => {
   const [flagNation, setFlagNation] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const setLang = (newLang) => {
     setFlagNation(MAP_LANGUAGES_TO_FLAGS[newLang]);
@@ -23,6 +24,7 @@ export const FlagChangeBox = () => {
   };
 
   const changeLang = () => {
+    setLoading(true);
     const currentLang = i18n.language;
     const indexLang = LANGUAGES.indexOf(currentLang);
 
@@ -47,14 +49,13 @@ export const FlagChangeBox = () => {
     setFlagNation(MAP_LANGUAGES_TO_FLAGS[lng])
   );
 
-  const FlagNation = useMemo(
-    () => (
-      <TouchableOpacity onPress={changeLang} activeOpacity={1}>
-        <FlagImage source={flagNation} />
-      </TouchableOpacity>
-    ),
-    [flagNation]
+  return (
+    <TouchableOpacity onPress={changeLang} activeOpacity={1}>
+      <FlagImage
+        source={flagNation}
+        onLoad={() => setLoading(false)}
+        style={{ opacity: loading ? 0.7 : 1 }}
+      />
+    </TouchableOpacity>
   );
-
-  return FlagNation;
 };
