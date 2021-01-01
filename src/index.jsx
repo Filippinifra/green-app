@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-
-import { NavigationContainer } from "@react-navigation/native";
-
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MainLayout } from "components/MainLayout";
-import { BottomBar } from "components/BottomBar";
-import { PATH_HOME } from "constants/path";
-import { MAP_PATH_TO_CONFIG, DISPOSITON_PATH } from "constants/config";
 import { getStorageItem, STORAGE_LANG_KEY } from "utils/storage";
 import i18n from "text/i18n";
 import { IntroAnimation } from "components/IntroAnimation";
+import { Router } from "components/Router";
+import "mockedApi";
+import { isMockingServer } from "constants/featureFlag";
+import { runMockServer } from "mockedApi";
 
-const Tab = createBottomTabNavigator();
+if (isMockingServer) {
+  runMockServer();
+}
 
 export const Code = () => {
   const [loaded, setLoaded] = useState(false);
@@ -28,34 +26,7 @@ export const Code = () => {
 
   return (
     <IntroAnimation loaded={loaded}>
-      <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName={PATH_HOME}
-          tabBar={(props) => <BottomBar {...props} />}
-        >
-          {DISPOSITON_PATH.map((path, index) => {
-            const {
-              Component,
-              tabTitle,
-              mainColor,
-              secondColor,
-            } = MAP_PATH_TO_CONFIG[path];
-
-            return (
-              <Tab.Screen name={path} key={`tab-${index}`}>
-                {() => (
-                  <MainLayout nameRoute={tabTitle} colorHeader={mainColor}>
-                    <Component
-                      mainColor={mainColor}
-                      secondColor={secondColor}
-                    />
-                  </MainLayout>
-                )}
-              </Tab.Screen>
-            );
-          })}
-        </Tab.Navigator>
-      </NavigationContainer>
+      <Router />
     </IntroAnimation>
   );
 };
