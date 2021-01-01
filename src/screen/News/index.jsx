@@ -7,15 +7,12 @@ import { NEWS_ENDPOINT } from "constants/endpoint";
 import _ from "lodash";
 import { LoadAndError } from "components/LoadAndError";
 import { fetcher } from "utils/fetcher";
-import { mock } from "./mock";
-
-const isMockEnabled = true;
 
 export const News = ({ mainColor, secondColor }) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const { data, mutate, size, setSize, error } = useSWRInfinite(
-    (index) => `${NEWS_ENDPOINT}?page=${index}`,
+    (index) => `${NEWS_ENDPOINT}?size=10&page=${index + 1}`,
     fetcher
   );
 
@@ -31,25 +28,16 @@ export const News = ({ mainColor, secondColor }) => {
 
   const news = data ? [].concat(...data) : [];
 
-  const cleanTempDescription = (desc) =>
-    desc.split("/a>")[1].substr(0, desc.split("/a>")[1].length - 4);
-
   return (
-    <LoadAndError
-      error={isMockEnabled ? null : error}
-      data={isMockEnabled ? mock : data}
-      color={mainColor}
-    >
+    <LoadAndError error={error} data={data} color={mainColor}>
       <FlatList
-        data={isMockEnabled ? mock : news}
+        data={news}
         renderItem={({ item: { title, description, url, image } }) => (
           <NewsWrapper>
             <NewsRow
               color={secondColor}
               title={title}
-              description={
-                isMockEnabled ? description : cleanTempDescription(description)
-              }
+              description={description}
               image={image}
               url={url}
             />
