@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { NewsRow } from "components/NewsRow";
-import { NewsWrapper } from "./styles";
 import { FlatList, RefreshControl, View } from "react-native";
 import { useSWRInfinite } from "swr";
 import { NEWS_ENDPOINT } from "constants/endpoint";
 import _ from "lodash";
 import { LoadAndError } from "components/LoadAndError";
 import { fetcher } from "utils/fetcher";
+import { NewsWrapper } from "./styles";
 
 export const News = ({ mainColor, secondColor }) => {
   const [refreshing, setRefreshing] = useState(false);
