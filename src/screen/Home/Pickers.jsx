@@ -1,5 +1,4 @@
-import React from "react";
-import { PickersWrapper, PickerAndIconWrapper } from "./styles";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { visualizationType } from "constants/const";
 import { Picker } from "components/Picker";
@@ -8,6 +7,7 @@ import { useAvailableDatesOptions } from "hook/useAvailableDatesOptions";
 import _ from "lodash";
 import { Icon } from "react-native-elements";
 import { COMMON_ERROR_COLOR, COMMON_FIFTH_COLOR } from "constants/palette";
+import { PickersWrapper, PickerAndIconWrapper } from "./styles";
 
 export const Pickers = ({
   townSelected,
@@ -18,6 +18,9 @@ export const Pickers = ({
   setVisualType,
 }) => {
   const { t } = useTranslation();
+
+  const [firstTimeSetTown, setFirstTimeSetTown] = useState(true);
+  const [firstTimeSetDate, setFirstTimeSetDate] = useState(true);
 
   const { towns } = useTownsOptions();
   const { dates, months, years } = useAvailableDatesOptions(
@@ -35,6 +38,24 @@ export const Pickers = ({
 
   const isDatePickerDisabled = Boolean(!townSelected || !visualType);
 
+  useEffect(() => {
+    const firstTown = towns[0];
+
+    if (firstTimeSetTown && towns.length && firstTown) {
+      setTownSelected(firstTown.value);
+      setFirstTimeSetTown(false);
+    }
+  }, [towns, firstTimeSetTown]);
+
+  useEffect(() => {
+    const firstDate = dates[0];
+
+    if (firstTimeSetDate && dates.length && firstDate) {
+      setDateSelected(firstDate.value);
+      setFirstTimeSetDate(false);
+    }
+  }, [dates, firstTimeSetDate]);
+
   return (
     <>
       <PickersWrapper>
@@ -46,6 +67,7 @@ export const Pickers = ({
             style={{ paddingLeft: 10 }}
           />
           <Picker
+            value={townSelected}
             items={towns}
             onChange={(value) => {
               if (value) {
@@ -53,7 +75,6 @@ export const Pickers = ({
                 setTownSelected(value);
               }
             }}
-            value={townSelected}
             style={{ marginRight: 10, marginLeft: 10 }}
             placeholder={t("home.town")}
             borderColor={!townSelected ? COMMON_ERROR_COLOR : null}
