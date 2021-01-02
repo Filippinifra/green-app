@@ -1,5 +1,5 @@
-import { COMMON_FOURTH_COLOR } from "constants/palette";
 import React from "react";
+import { COMMON_FOURTH_COLOR } from "constants/palette";
 import { useTranslation } from "react-i18next";
 import RNPickerSelect from "react-native-picker-select";
 import { PickerWrapper } from "./styles";

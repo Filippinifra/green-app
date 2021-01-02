@@ -4,7 +4,6 @@ import {
   LANGUAGES,
   MAP_LANGUAGES_TO_FLAGS,
 } from "constants/config";
-import { FlagImage } from "./styles";
 import i18n from "text/i18n";
 import {
   getStorageItem,
@@ -12,6 +11,7 @@ import {
   STORAGE_LANG_KEY,
 } from "utils/storage";
 import { TouchElement } from "components/TouchElement";
+import { FlagImage } from "./styles";
 
 export const FlagChangeBox = () => {
   const [flagNation, setFlagNation] = useState(null);

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, Linking } from "react-native";
 import { COMMON_THIRD_COLOR } from "constants/palette";
-import { NewsImage, InfoWrapper, ViewMoreButtonWrapper } from "./styles";
 import { Badge } from "components/Badge";
 import { useTranslation } from "react-i18next";
 import { TouchElement } from "components/TouchElement";
+import { NewsImage, InfoWrapper, ViewMoreButtonWrapper } from "./styles";
 
 export const NewsRow = ({ title, description, image, url, color }) => {
   const [isOpen, setIsOpen] = useState(false);

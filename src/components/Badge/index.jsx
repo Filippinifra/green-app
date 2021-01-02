@@ -1,7 +1,7 @@
 import React from "react";
-import { BadgeWrapper, HeaderWrapper, Title } from "./styles";
 import { View } from "react-native";
 import { ShadowStyle } from "components/Shadow";
+import { BadgeWrapper, HeaderWrapper, Title } from "./styles";
 
 export const Badge = ({ children, title, color }) => (
   <View style={ShadowStyle.ShadowBox}>

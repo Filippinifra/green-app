@@ -3,9 +3,9 @@ import { TouchElement } from "components/TouchElement";
 import { Text } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
-import { PickerWrapper } from "./styles";
 import { useTranslation } from "react-i18next";
 import { COMMON_FIFTH_COLOR } from "constants/palette";
+import { PickerWrapper } from "./styles";
 
 export const DatePicker = ({
   date,

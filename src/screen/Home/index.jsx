@@ -1,15 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { ChartLine } from "components/ChartLine";
 import { Badge } from "components/Badge";
-import {
-  Square,
-  WrapperBoxesInRow,
-  Wrapper,
-  CentrateElement,
-  Tips,
-  BigLabel,
-  SubText,
-} from "./styles";
 import { View, ScrollView } from "react-native";
 import { ShadowStyle } from "components/Shadow";
 import { useTranslation } from "react-i18next";
@@ -20,7 +11,16 @@ import { useConsumptions } from "hook/useConsumptions";
 import _ from "lodash";
 import moment from "moment";
 import { Text } from "react-native";
-import { COMMON_ERROR_COLOR, COMMON_WARNING_COLOR } from "constants/palette";
+import { COMMON_ERROR_COLOR } from "constants/palette";
+import {
+  Square,
+  WrapperBoxesInRow,
+  Wrapper,
+  CentrateElement,
+  Tips,
+  BigLabel,
+  SubText,
+} from "./styles";
 
 const GridGap = 20;
 

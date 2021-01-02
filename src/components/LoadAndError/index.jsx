@@ -1,8 +1,8 @@
 import React from "react";
 import { COMMON_FIFTH_COLOR, COMMON_ERROR_COLOR } from "constants/palette";
 import { ActivityIndicator, Text } from "react-native";
-import { CentrateView } from "./styles";
 import { useTranslation } from "react-i18next";
+import { CentrateView } from "./styles";
 
 export const LoadAndError = ({
   data,

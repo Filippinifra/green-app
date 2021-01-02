@@ -1,5 +1,5 @@
-import { THIRD_COLOR } from "constants/palette";
 import React from "react";
+import { THIRD_COLOR } from "constants/palette";
 import AnimatedSplash from "react-native-animated-splash-screen";
 
 export const IntroAnimation = ({ children, loaded }) => (

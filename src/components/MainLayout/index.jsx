@@ -9,8 +9,8 @@ import {
   HEIGHT_BOTTOM_NAVIGATOR,
   HEIGHT_TOP_TITLE_ROUTE_NAME,
 } from "constants/config";
-import { Title, RightBoxHeader } from "./styles";
 import { FlagChangeBox } from "components/FlagChangeBox";
+import { Title, RightBoxHeader } from "./styles";
 
 export const MainLayout = ({ children, nameRoute, colorHeader }) => {
   const insets = useSafeAreaInsets();

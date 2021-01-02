@@ -3,7 +3,6 @@ import { getStorageItem, STORAGE_LANG_KEY } from "utils/storage";
 import i18n from "text/i18n";
 import { IntroAnimation } from "components/IntroAnimation";
 import { Router } from "components/Router";
-import "mockedApi";
 import { isMockingServer } from "constants/featureFlag";
 import { runMockServer } from "mockedApi";
 
