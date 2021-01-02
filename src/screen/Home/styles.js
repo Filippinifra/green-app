@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-
 import { COMMON_THIRD_COLOR } from "constants/palette";
 
 export const Wrapper = styled.ScrollView`
