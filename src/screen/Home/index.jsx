@@ -19,6 +19,8 @@ import { Pickers } from "./Pickers";
 import { useConsumptions } from "hook/useConsumptions";
 import _ from "lodash";
 import moment from "moment";
+import { Text } from "react-native";
+import { COMMON_ERROR_COLOR, COMMON_WARNING_COLOR } from "constants/palette";
 
 const GridGap = 20;
 
@@ -121,11 +123,21 @@ export const Home = ({ mainColor, secondColor }) => {
         };
   };
 
+  const WaitingInputElement = () => (
+    <Text style={{ color: COMMON_ERROR_COLOR }}>{t("home.insertFilters")}</Text>
+  );
+
   return (
     <ScrollView>
       <Wrapper>
         <Badge color={secondColor} title={t("home.energyConsumption")}>
-          <LoadAndError data={consumptions} error={errorConsumtpion}>
+          <LoadAndError
+            data={consumptions.length}
+            error={errorConsumtpion}
+            isWaitingInput={!townSelected || !dateSelected || !visualType}
+            waitingElement={<WaitingInputElement />}
+            loadWrapperStyle={{ height: 300, justifyContent: "center" }}
+          >
             {chartMemoized}
           </LoadAndError>
           <Pickers

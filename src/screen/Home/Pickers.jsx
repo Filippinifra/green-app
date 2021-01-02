@@ -5,10 +5,9 @@ import { visualizationType } from "constants/const";
 import { Picker } from "components/Picker";
 import { useTownsOptions } from "hook/useTownsOptions";
 import { useAvailableDatesOptions } from "hook/useAvailableDatesOptions";
-import { DatePicker } from "components/DatePicker";
 import _ from "lodash";
 import { Icon } from "react-native-elements";
-import { COMMON_FIFTH_COLOR } from "constants/palette";
+import { COMMON_ERROR_COLOR, COMMON_FIFTH_COLOR } from "constants/palette";
 
 export const Pickers = ({
   townSelected,
@@ -23,7 +22,8 @@ export const Pickers = ({
   const { towns } = useTownsOptions();
   const { dates, months, years } = useAvailableDatesOptions(
     townSelected,
-    visualType
+    visualType,
+    t("monthsShort", { returnObjects: true })
   );
 
   const visualTypeOptions = Object.entries(visualizationType).map(
@@ -33,10 +33,7 @@ export const Pickers = ({
     })
   );
 
-  const maxDate = _.get(dates, "0.value", null);
-  const minDate = _.get(_.last(dates), "value", null);
-
-  const isDatePickerDisabled = !townSelected && !visualType;
+  const isDatePickerDisabled = Boolean(!townSelected || !visualType);
 
   return (
     <>
@@ -59,6 +56,7 @@ export const Pickers = ({
             value={townSelected}
             style={{ marginRight: 10, marginLeft: 10 }}
             placeholder={t("home.town")}
+            borderColor={!townSelected ? COMMON_ERROR_COLOR : null}
           />
         </PickerAndIconWrapper>
         <PickerAndIconWrapper>
@@ -79,48 +77,38 @@ export const Pickers = ({
             value={visualType}
             style={{ marginRight: 10, marginLeft: 10 }}
             placeholder={t("home.viewBy")}
+            disabled={!townSelected}
           />
         </PickerAndIconWrapper>
         <PickerAndIconWrapper>
-          {visualType === visualizationType.dayView ? (
-            <>
-              <Icon
-                size={15}
-                name="today"
-                color={COMMON_FIFTH_COLOR}
-                style={{ marginRight: 2 }}
-              />
-              <DatePicker
-                date={dateSelected}
-                onChange={(date) => setDateSelected(date)}
-                maximumDate={maxDate}
-                minimumDate={minDate}
-                style={{ marginLeft: 7 }}
-                placeholder={t("home.day")}
-                disabled={isDatePickerDisabled}
-              />
-            </>
-          ) : (
-            <>
-              <Icon size={15} name="today" color={COMMON_FIFTH_COLOR} />
-              <Picker
-                items={
-                  visualType === visualizationType.monthView ? months : years
-                }
-                onChange={(value) => {
-                  setDateSelected(value);
-                }}
-                value={dateSelected}
-                style={{ marginRight: 10, marginLeft: 10 }}
-                placeholder={
-                  visualType === visualizationType.monthView
-                    ? t("home.month")
-                    : t("home.year")
-                }
-                disabled={isDatePickerDisabled}
-              />
-            </>
-          )}
+          <Icon size={15} name="today" color={COMMON_FIFTH_COLOR} />
+          <Picker
+            items={
+              visualType === visualizationType.dayView
+                ? dates
+                : visualType === visualizationType.monthView
+                ? months
+                : years
+            }
+            onChange={(value) => {
+              if (value) {
+                setDateSelected(value);
+              }
+            }}
+            value={dateSelected}
+            style={{ marginRight: 10, marginLeft: 10 }}
+            placeholder={
+              visualType === visualizationType.dayView
+                ? t("home.day")
+                : visualType === visualizationType.monthView
+                ? t("home.month")
+                : t("home.year")
+            }
+            disabled={isDatePickerDisabled}
+            borderColor={
+              !dateSelected && !isDatePickerDisabled ? COMMON_ERROR_COLOR : null
+            }
+          />
         </PickerAndIconWrapper>
       </PickersWrapper>
     </>

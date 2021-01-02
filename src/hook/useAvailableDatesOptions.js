@@ -18,7 +18,11 @@ const getDatesBetweenDates = (startDate, endDate) => {
   return dates;
 };
 
-export const useAvailableDatesOptions = (town, visualType) => {
+export const useAvailableDatesOptions = (
+  town,
+  visualType,
+  monthArrayTranslation
+) => {
   const { data: dates, error } = useSWR(
     town ? `${CONSUMPTION_DATES_ENDPOINT}?town=${town}` : null,
     fetcher
@@ -33,11 +37,18 @@ export const useAvailableDatesOptions = (town, visualType) => {
 
     if (visualType === visualizationType.dayView) {
       const datesOptions = totalDates.map((date) => ({
-        value: date,
-        label: date.toString(),
+        value: date.toISOString(),
+        label: `${moment(date).format("DD")} ${
+          monthArrayTranslation[moment(date).month()]
+        } ${moment(date).format("YYYY")}`,
       }));
 
-      return { dates: datesOptions.reverse(), error };
+      return {
+        months: [],
+        years: [],
+        dates: datesOptions.reverse(),
+        error,
+      };
     } else if (visualType === visualizationType.yearView) {
       const yearsAvailable = totalDates.reduce((reducer, date) => {
         const dateMoment = moment(date);
@@ -56,7 +67,7 @@ export const useAvailableDatesOptions = (town, visualType) => {
         label: year.toString(),
       }));
 
-      return { years: yearsOptions, error };
+      return { months: [], dates: [], years: yearsOptions, error };
     } else if (visualType === visualizationType.monthView) {
       const monthsAvailable = totalDates.reduce((reducer, date) => {
         const dateMoment = moment(date);
@@ -75,9 +86,9 @@ export const useAvailableDatesOptions = (town, visualType) => {
         label: month.toString(),
       }));
 
-      return { months: monthsOptions, error };
+      return { dates: [], years: [], months: monthsOptions, error };
     }
   }
 
-  return { dates: [], error };
+  return { dates: [], months: [], years: [], error };
 };
