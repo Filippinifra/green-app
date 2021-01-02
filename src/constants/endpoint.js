@@ -6,3 +6,6 @@ const getCompleteUrl = (endpoint) =>
   isMockingServer ? `/${endpoint}` : `${backendUrl}/${endpoint}`;
 
 export const NEWS_ENDPOINT = getCompleteUrl("news");
+export const CONSUMPTION_TOWNS_ENDPOINT = getCompleteUrl("consumption/towns");
+export const CONSUMPTION_DATES_ENDPOINT = getCompleteUrl("consumption/dates");
+export const CONSUMPTION_ENDPOINT = getCompleteUrl("consumption");
