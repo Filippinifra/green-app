@@ -24,6 +24,8 @@ i18n.use(initReactI18next).init({
           month: "Month",
           year: "Year",
           hoursTip: "{{hourAmPm}}",
+          selectTheDate: "Select the date",
+          insertFilters: "Please compile filters below",
         },
         ecoTips: ecoTips.en,
         visualType: {
@@ -64,6 +66,8 @@ i18n.use(initReactI18next).init({
           month: "Mese",
           year: "Anno",
           hoursTip: "Ore {{hour}}",
+          selectTheDate: "Seleziona la data",
+          insertFilters: "Per favore compila i filtri sottostanti",
         },
         ecoTips: ecoTips.it,
         visualType: {

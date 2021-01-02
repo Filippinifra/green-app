@@ -11,11 +11,12 @@ export const Picker = ({
   value,
   placeholder,
   disabled,
+  borderColor,
 }) => {
   const { t } = useTranslation();
 
   return (
-    <PickerWrapper style={style}>
+    <PickerWrapper style={style} borderColor={borderColor}>
       <RNPickerSelect
         onValueChange={onChange}
         value={value}

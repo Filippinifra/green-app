@@ -46,6 +46,7 @@ export const DatePicker = ({
         }}
         minimumDate={minimumDate}
         maximumDate={maximumDate}
+        headerTextIOS={t("home.selectTheDate")}
       />
     </TouchElement>
   );
