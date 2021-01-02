@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { LineChart, XAxis, YAxis } from "react-native-svg-charts";
 import { G, Line } from "react-native-svg";
 
-export const ChartLine = ({ data, height }) => {
+export const ChartLine = ({ data, height, size }) => {
   const axesSvg = { fontSize: 10, fill: "grey" };
   const verticalContentInset = { top: 10, bottom: 10 };
   const xAxisHeight = 30;
@@ -34,7 +34,15 @@ export const ChartLine = ({ data, height }) => {
   );
 
   return (
-    <View style={{ height, padding: 20, flexDirection: "row" }}>
+    <View
+      style={{
+        height,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 10,
+        flexDirection: "row",
+      }}
+    >
       <YAxis
         data={data}
         style={{ marginBottom: xAxisHeight }}
@@ -56,7 +64,17 @@ export const ChartLine = ({ data, height }) => {
         <XAxis
           style={{ marginHorizontal: -10, height: xAxisHeight, paddingTop: 10 }}
           data={data}
-          formatLabel={(value, index) => (index % 2 == 0 ? index : null)}
+          formatLabel={(value, index) =>
+            size === 24
+              ? index % 2 == 0
+                ? index
+                : null
+              : size === 12
+              ? index + 1
+              : index % 3 == 0
+              ? index + 1
+              : null
+          }
           contentInset={{ left: 10, right: 10 }}
           svg={axesSvg}
         />
