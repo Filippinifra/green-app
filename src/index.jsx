@@ -21,7 +21,7 @@ export const Code = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => setLoaded(true), 3000);
+    setTimeout(() => setLoaded(true), 2000);
   }, []);
 
   return (
