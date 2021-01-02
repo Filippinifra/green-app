@@ -3,3 +3,5 @@ export const visualizationType = {
   monthView: "month-view",
   yearView: "year-view",
 };
+
+export const unitMeasure = "MW";

@@ -5,7 +5,7 @@ import { View, ScrollView } from "react-native";
 import { ShadowStyle } from "components/Shadow";
 import { useTranslation } from "react-i18next";
 import { LoadAndError } from "components/LoadAndError";
-import { visualizationType } from "constants/const";
+import { unitMeasure, visualizationType } from "constants/const";
 import { Pickers } from "./Pickers";
 import { useConsumptions } from "hook/useConsumptions";
 import _ from "lodash";
@@ -130,7 +130,10 @@ export const Home = ({ mainColor, secondColor }) => {
   return (
     <ScrollView>
       <Wrapper>
-        <Badge color={secondColor} title={t("home.energyConsumption")}>
+        <Badge
+          color={secondColor}
+          title={`${t("home.energyConsumption")} (${unitMeasure})`}
+        >
           <LoadAndError
             data={consumptions.length}
             error={errorConsumtpion}
@@ -160,7 +163,10 @@ export const Home = ({ mainColor, secondColor }) => {
               style={ShadowStyle.ShadowBox}
             >
               <CentrateElement>
-                <BigLabel style={{ marginTop: 20 }}>{max}</BigLabel>
+                <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
+                  <BigLabel style={{ marginTop: 20 }}>{max}</BigLabel>
+                  <SubText style={{ top: -3 }}>{unitMeasure}</SubText>
+                </View>
                 <SubText style={{ marginTop: 10 }}>
                   {t("home.maxConsumption")}
                 </SubText>
@@ -177,7 +183,10 @@ export const Home = ({ mainColor, secondColor }) => {
               style={ShadowStyle.ShadowBox}
             >
               <CentrateElement>
-                <BigLabel style={{ marginTop: 20 }}>{min}</BigLabel>
+                <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
+                  <BigLabel style={{ marginTop: 20 }}>{min}</BigLabel>
+                  <SubText style={{ top: -3 }}>{unitMeasure}</SubText>
+                </View>
                 <SubText style={{ marginTop: 10 }}>
                   {t("home.minConsumption")}
                 </SubText>
