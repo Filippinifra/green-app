@@ -4,12 +4,24 @@ import { ActivityIndicator, Text } from "react-native";
 import { CentrateView } from "./styles";
 import { useTranslation } from "react-i18next";
 
-export const LoadAndError = ({ data, error, color, children }) => {
+export const LoadAndError = ({
+  data,
+  error,
+  color,
+  children,
+  isWaitingInput,
+  waitingElement,
+  loadWrapperStyle,
+}) => {
   const { t } = useTranslation();
 
   if (!data && !error) {
-    return (
-      <CentrateView>
+    return isWaitingInput ? (
+      <CentrateView style={{ ...loadWrapperStyle }}>
+        {waitingElement}
+      </CentrateView>
+    ) : (
+      <CentrateView style={{ ...loadWrapperStyle }}>
         <ActivityIndicator
           size="small"
           color={color || COMMON_FIFTH_COLOR}
