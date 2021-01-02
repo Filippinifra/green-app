@@ -46,3 +46,15 @@ export const SubText = styled.Text`
   font-weight: 600;
   text-align: center;
 `;
+
+export const PickersWrapper = styled.View`
+  flex-direction: row;
+  margin-bottom: 15px;
+  margin-top: 15px;
+`;
+
+export const PickerAndIconWrapper = styled.View`
+  width: 33%;
+  flex-direction: row;
+  align-items: center;
+`;
