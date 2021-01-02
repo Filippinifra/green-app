@@ -26,7 +26,7 @@ export const Pickers = ({
   const { dates, months, years } = useAvailableDatesOptions(
     townSelected,
     visualType,
-    t("monthsShort", { returnObjects: true })
+    t("monthsLong", { returnObjects: true })
   );
 
   const visualTypeOptions = Object.entries(visualizationType).map(
