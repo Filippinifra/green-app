@@ -19,12 +19,12 @@ const getDatesBetweenDates = (startDate, endDate) => {
 };
 
 export const useAvailableDatesOptions = (
-  town,
+  region,
   visualType,
   monthArrayTranslation
 ) => {
   const { data: dates, error } = useSWR(
-    town ? `${CONSUMPTION_DATES_ENDPOINT}?town=${town}` : null,
+    region ? `${CONSUMPTION_DATES_ENDPOINT}?region=${region}` : null,
     fetcher
   );
 

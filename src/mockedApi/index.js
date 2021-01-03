@@ -1,6 +1,6 @@
 import {
   NEWS_ENDPOINT,
-  CONSUMPTION_TOWNS_ENDPOINT,
+  CONSUMPTION_REGIONS_ENDPOINT,
   CONSUMPTION_DATES_ENDPOINT,
   CONSUMPTION_ENDPOINT,
 } from "constants/endpoint";
@@ -20,13 +20,13 @@ export const runMockServer = () => {
     return [];
   });
 
-  server.get(CONSUMPTION_TOWNS_ENDPOINT, homeMock.towns);
+  server.get(CONSUMPTION_REGIONS_ENDPOINT, homeMock.regions);
 
   server.get(CONSUMPTION_DATES_ENDPOINT, (schema, { queryParams }) => {
-    const { town } = queryParams;
-    if (town === "Milano") return homeMock.datesMilano;
-    if (town === "Roma") return homeMock.datesRoma;
-    if (town === "Napoli") return homeMock.datesNapoli;
+    const { region } = queryParams;
+    if (region === "Milano") return homeMock.datesMilano;
+    if (region === "Roma") return homeMock.datesRoma;
+    if (region === "Napoli") return homeMock.datesNapoli;
     return [];
   });
 

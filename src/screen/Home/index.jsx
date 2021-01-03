@@ -5,7 +5,7 @@ import { View, ScrollView } from "react-native";
 import { ShadowStyle } from "components/Shadow";
 import { useTranslation } from "react-i18next";
 import { LoadAndError } from "components/LoadAndError";
-import { unitMeasure, visualizationType } from "constants/const";
+import { visualizationType } from "constants/const";
 import { Pickers } from "./Pickers";
 import { useConsumptions } from "hook/useConsumptions";
 import _ from "lodash";
@@ -26,7 +26,7 @@ const GridGap = 20;
 
 export const Home = ({ mainColor, secondColor }) => {
   const [heightBox, setHeightBox] = useState(0);
-  const [townSelected, setTownSelected] = useState("");
+  const [regionSelected, setRegionSelected] = useState("");
   const [dateSelected, setDateSelected] = useState(null);
   const [visualType, setVisualType] = useState(visualizationType.dayView);
 
@@ -53,11 +53,15 @@ export const Home = ({ mainColor, secondColor }) => {
           size: moment(dateSelected, "MM/YYYY").daysInMonth(),
         };
 
-  const { consumptions, error: errorConsumtpion } = useConsumptions(
+  const {
+    consumptions,
+    unitMeasure,
+    error: errorConsumtpion,
+  } = useConsumptions(
     argumentsConsumptions.startDate,
     argumentsConsumptions.endDate,
     argumentsConsumptions.size,
-    townSelected
+    regionSelected
   );
 
   const onLayoutSquare = (event) => {
@@ -80,7 +84,7 @@ export const Home = ({ mainColor, secondColor }) => {
   const isAllReady =
     consumptions &&
     consumptions.length &&
-    townSelected &&
+    regionSelected &&
     dateSelected &&
     visualType;
 
@@ -137,15 +141,15 @@ export const Home = ({ mainColor, secondColor }) => {
           <LoadAndError
             data={consumptions.length}
             error={errorConsumtpion}
-            isWaitingInput={!townSelected || !dateSelected || !visualType}
+            isWaitingInput={!regionSelected || !dateSelected || !visualType}
             waitingElement={<WaitingInputElement />}
             loadWrapperStyle={{ height: 300, justifyContent: "center" }}
           >
             {chartMemoized}
           </LoadAndError>
           <Pickers
-            townSelected={townSelected}
-            setTownSelected={setTownSelected}
+            regionSelected={regionSelected}
+            setRegionSelected={setRegionSelected}
             dateSelected={dateSelected}
             setDateSelected={setDateSelected}
             visualType={visualType}

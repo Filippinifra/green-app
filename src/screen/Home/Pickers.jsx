@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { visualizationType } from "constants/const";
 import { Picker } from "components/Picker";
-import { useTownsOptions } from "hook/useTownsOptions";
+import { useRegionsOptions } from "hook/useRegionsOptions.js";
 import { useAvailableDatesOptions } from "hook/useAvailableDatesOptions";
 import _ from "lodash";
 import { Icon } from "react-native-elements";
@@ -10,8 +10,8 @@ import { COMMON_ERROR_COLOR, COMMON_FIFTH_COLOR } from "constants/palette";
 import { PickersWrapper, PickerAndIconWrapper } from "./styles";
 
 export const Pickers = ({
-  townSelected,
-  setTownSelected,
+  regionSelected,
+  setRegionSelected,
   dateSelected,
   setDateSelected,
   visualType,
@@ -19,12 +19,12 @@ export const Pickers = ({
 }) => {
   const { t } = useTranslation();
 
-  const [firstTimeSetTown, setFirstTimeSetTown] = useState(true);
+  const [firstTimeSetRegion, setFirstTimeSetRegion] = useState(true);
   const [firstTimeSetDate, setFirstTimeSetDate] = useState(true);
 
-  const { towns } = useTownsOptions();
+  const { regions } = useRegionsOptions();
   const { dates, months, years } = useAvailableDatesOptions(
-    townSelected,
+    regionSelected,
     visualType,
     t("monthsLong", { returnObjects: true })
   );
@@ -36,16 +36,16 @@ export const Pickers = ({
     })
   );
 
-  const isDatePickerDisabled = Boolean(!townSelected || !visualType);
+  const isDatePickerDisabled = Boolean(!regionSelected || !visualType);
 
   useEffect(() => {
-    const firstTown = towns[0];
+    const firstRegion = regions[0];
 
-    if (firstTimeSetTown && towns.length && firstTown) {
-      setTownSelected(firstTown.value);
-      setFirstTimeSetTown(false);
+    if (firstTimeSetRegion && regions.length && firstRegion) {
+      setRegionSelected(firstRegion.value);
+      setFirstTimeSetRegion(false);
     }
-  }, [towns, firstTimeSetTown]);
+  }, [regions, firstTimeSetRegion]);
 
   useEffect(() => {
     const firstDate = dates[0];
@@ -67,17 +67,17 @@ export const Pickers = ({
             style={{ paddingLeft: 10 }}
           />
           <Picker
-            value={townSelected}
-            items={towns}
+            value={regionSelected}
+            items={regions}
             onChange={(value) => {
               if (value) {
                 setDateSelected(null);
-                setTownSelected(value);
+                setRegionSelected(value);
               }
             }}
             style={{ marginRight: 10, marginLeft: 10 }}
-            placeholder={t("home.town")}
-            borderColor={!townSelected ? COMMON_ERROR_COLOR : null}
+            placeholder={t("home.region")}
+            borderColor={!regionSelected ? COMMON_ERROR_COLOR : null}
           />
         </PickerAndIconWrapper>
         <PickerAndIconWrapper>
@@ -98,7 +98,7 @@ export const Pickers = ({
             value={visualType}
             style={{ marginRight: 10, marginLeft: 10 }}
             placeholder={t("home.viewBy")}
-            disabled={!townSelected}
+            disabled={!regionSelected}
           />
         </PickerAndIconWrapper>
         <PickerAndIconWrapper>
