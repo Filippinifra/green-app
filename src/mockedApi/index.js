@@ -35,10 +35,24 @@ export const runMockServer = () => {
 
     const diffDays = moment(endDate).diff(moment(startDate), "days");
 
+    const getRandomData = (size) => {
+      const sumDateNumber =
+        moment(startDate).valueOf() + moment(endDate).valueOf();
+
+      const energy = Array.from(Array(size)).map(() =>
+        Number(((sumDateNumber % Math.random()) * 100).toFixed(2))
+      );
+
+      return {
+        energy,
+        unitMeasure: "MW",
+      };
+    };
+
     return diffDays === 1
-      ? homeMock.consumptionDay
+      ? getRandomData(24)
       : diffDays > 1 && diffDays < 33
-      ? homeMock.consumptionMonth
-      : homeMock.consumptionYear;
+      ? getRandomData(31)
+      : getRandomData(12);
   });
 };
