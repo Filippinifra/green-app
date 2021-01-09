@@ -136,7 +136,9 @@ export const Home = ({ mainColor, secondColor }) => {
       <Wrapper>
         <Badge
           color={secondColor}
-          title={`${t("home.energyConsumption")} (${unitMeasure})`}
+          title={`${t("home.energyConsumption")} ${
+            unitMeasure ? `(${unitMeasure})` : ""
+          }`}
         >
           <LoadAndError
             data={consumptions.length}
