@@ -29,9 +29,9 @@ i18n.use(initReactI18next).init({
         },
         ecoTips: ecoTips.en,
         visualType: {
-          dayView: "By day",
-          monthView: "By month",
-          yearView: "By year",
+          dayView: "Day",
+          monthView: "Month",
+          yearView: "Year",
         },
         monthsShort: [
           "Jan",
@@ -85,9 +85,9 @@ i18n.use(initReactI18next).init({
         },
         ecoTips: ecoTips.it,
         visualType: {
-          dayView: "Per giorno",
-          monthView: "Per mese",
-          yearView: "Per anno",
+          dayView: "Giorno",
+          monthView: "Mese",
+          yearView: "Anno",
         },
         monthsShort: [
           "Gen",
