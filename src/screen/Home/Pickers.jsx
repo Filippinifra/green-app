@@ -19,6 +19,7 @@ export const Pickers = ({
 }) => {
   const { t } = useTranslation();
 
+  const [hasChangeSomething, setHasChangeSomething] = useState(false);
   const [firstTimeSetRegion, setFirstTimeSetRegion] = useState(true);
   const [firstTimeSetDate, setFirstTimeSetDate] = useState(true);
 
@@ -56,6 +57,21 @@ export const Pickers = ({
     }
   }, [dates, firstTimeSetDate]);
 
+  useEffect(() => {
+    if (hasChangeSomething) {
+      if (visualType === visualizationType.dayView && dates.length) {
+        setHasChangeSomething(false);
+        setDateSelected(dates[0].value);
+      } else if (visualType === visualizationType.monthView && months.length) {
+        setHasChangeSomething(false);
+        setDateSelected(months[0].value);
+      } else if (visualType === visualizationType.yearView && years.length) {
+        setHasChangeSomething(false);
+        setDateSelected(years[0].value);
+      }
+    }
+  }, [dates, months, years]);
+
   return (
     <>
       <PickersWrapper>
@@ -71,8 +87,8 @@ export const Pickers = ({
             items={regions}
             onChange={(value) => {
               if (value) {
-                setDateSelected(null);
                 setRegionSelected(value);
+                setHasChangeSomething(true);
               }
             }}
             style={{ marginRight: 10, marginLeft: 10 }}
@@ -91,8 +107,8 @@ export const Pickers = ({
             items={visualTypeOptions}
             onChange={(type) => {
               if (type) {
-                setDateSelected(null);
                 setVisualType(type);
+                setHasChangeSomething(true);
               }
             }}
             value={visualType}
