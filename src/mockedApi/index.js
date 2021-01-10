@@ -31,7 +31,7 @@ export const runMockServer = () => {
   });
 
   server.get(CONSUMPTION_ENDPOINT, (schema, { queryParams }) => {
-    const { startDate, endDate } = queryParams;
+    const { startDate, endDate, region } = queryParams;
 
     const diffDays = moment(endDate).diff(moment(startDate), "days");
 
@@ -39,9 +39,26 @@ export const runMockServer = () => {
       const sumDateNumber =
         moment(startDate).valueOf() + moment(endDate).valueOf();
 
-      const energy = Array.from(Array(size)).map(() =>
-        Number(((sumDateNumber % Math.random()) * 100).toFixed(2))
-      );
+      const firstLetter = region[0];
+      const letterToNumber = Number(firstLetter.codePointAt(0));
+
+      const energy = Array.from(Array(size))
+        .map(
+          (element, index) =>
+            Number(
+              (
+                (sumDateNumber % (index + 2)) +
+                ((index * 5 - letterToNumber + 3 - (index % 4)) % 10)
+              ).toFixed(2)
+            ) + 10
+        )
+        .map((value, index, array) => {
+          const average = array.reduce((a, b) => a + b) / array.length;
+          return value < average
+            ? value / 2 + average / 2
+            : value * 2 - average * 2;
+        })
+        .map((element) => element + letterToNumber / 2);
 
       return {
         energy,
