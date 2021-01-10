@@ -170,7 +170,9 @@ export const Home = ({ mainColor, secondColor }) => {
             >
               <CentrateElement>
                 <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
-                  <BigLabel style={{ marginTop: 20 }}>{max}</BigLabel>
+                  <BigLabel style={{ marginTop: 20 }}>
+                    {Number(max).toFixed(2)}
+                  </BigLabel>
                   <SubText style={{ top: -3 }}>{unitMeasure}</SubText>
                 </View>
                 <SubText style={{ marginTop: 10 }}>
@@ -190,7 +192,9 @@ export const Home = ({ mainColor, secondColor }) => {
             >
               <CentrateElement>
                 <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
-                  <BigLabel style={{ marginTop: 20 }}>{min}</BigLabel>
+                  <BigLabel style={{ marginTop: 20 }}>
+                    {Number(min).toFixed(2)}
+                  </BigLabel>
                   <SubText style={{ top: -3 }}>{unitMeasure}</SubText>
                 </View>
                 <SubText style={{ marginTop: 10 }}>
