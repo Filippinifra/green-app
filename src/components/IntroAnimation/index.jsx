@@ -1,5 +1,5 @@
 import React from "react";
-import { THIRD_COLOR } from "constants/palette";
+import { FIRST_COLOR } from "constants/palette";
 import AnimatedSplash from "react-native-animated-splash-screen";
 
 export const IntroAnimation = ({ children, loaded }) => (
@@ -7,7 +7,7 @@ export const IntroAnimation = ({ children, loaded }) => (
     translucent={true}
     isLoaded={loaded}
     logoImage={require("images/logo.png")}
-    backgroundColor={THIRD_COLOR}
+    backgroundColor={FIRST_COLOR}
     logoWidth={80}
     logoHeight={80}
   >
