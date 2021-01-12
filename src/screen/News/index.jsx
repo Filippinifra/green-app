@@ -1,54 +1,56 @@
-import React, { useState } from "react";
+import React from "react";
 import { NewsRow } from "components/NewsRow";
-import { FlatList, RefreshControl, View } from "react-native";
-import { useSWRInfinite } from "swr";
-import { NEWS_ENDPOINT } from "constants/endpoint";
+import { FlatList } from "react-native";
 import _ from "lodash";
 import { LoadAndError } from "components/LoadAndError";
-import { fetcher } from "utils/fetcher";
 import { NewsWrapper } from "./styles";
+import { useNews } from "hook/useNews";
+import { RAINBOW_COLORS } from "constants/palette";
+import { getImageFeedItem } from "utils/getImageFeedItem";
+import { useMemoTextEncoded } from "hook/useMemoTextEncoded";
 
-export const News = ({ mainColor, secondColor }) => {
-  const [refreshing, setRefreshing] = useState(false);
-
-  const { data, mutate, size, setSize, error } = useSWRInfinite(
-    (index) => `${NEWS_ENDPOINT}?size=10&page=${index + 1}`,
-    fetcher
-  );
-
-  const onRefresh = async () => {
-    setRefreshing(true);
-    await mutate();
-    setRefreshing(false);
-  };
-
-  const loadMore = () => {
-    setSize(size + 1);
-  };
-
-  const news = data ? [].concat(...data) : [];
+const MemoizedNewsRow = ({ title, description, color, image, url }) => {
+  const { text: titleConverted } = useMemoTextEncoded(title);
+  const { text: desctiptionConverted } = useMemoTextEncoded(description);
 
   return (
-    <LoadAndError error={error} data={data} color={mainColor}>
+    <NewsWrapper>
+      <NewsRow
+        color={color}
+        title={titleConverted}
+        description={desctiptionConverted}
+        image={image}
+        url={url}
+      />
+    </NewsWrapper>
+  );
+};
+
+export const News = ({ mainColor, url }) => {
+  const { news, image } = useNews(url);
+
+  return (
+    <LoadAndError data={news.length} color={mainColor}>
       <FlatList
         data={news}
-        renderItem={({ item: { title, description, url, image } }) => (
-          <NewsWrapper>
-            <NewsRow
-              color={secondColor}
+        renderItem={({
+          item: { description, title, links, content },
+          index,
+        }) => {
+          const color = RAINBOW_COLORS[index % RAINBOW_COLORS.length];
+
+          const imageUrl = getImageFeedItem(content, description) || image;
+
+          return (
+            <MemoizedNewsRow
+              color={color}
               title={title}
               description={description}
-              image={image}
-              url={url}
+              image={imageUrl}
+              url={links[0].url}
             />
-          </NewsWrapper>
-        )}
-        onEndReached={loadMore}
-        refreshControl={
-          <View style={{ top: 20 }}>
-            <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
-          </View>
-        }
+          );
+        }}
         contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
         keyExtractor={(item, index) => `news-element-${index}`}
       />
