@@ -1,7 +1,6 @@
 import React from "react";
-import { COMMON_FIFTH_COLOR, COMMON_ERROR_COLOR } from "constants/palette";
+import { FIRST_COLOR, COMMON_ERROR_COLOR } from "constants/palette";
 import { ActivityIndicator, Text } from "react-native";
-import { useTranslation } from "react-i18next";
 import { CentrateView } from "./styles";
 
 export const LoadAndError = ({
@@ -13,8 +12,6 @@ export const LoadAndError = ({
   waitingElement,
   loadWrapperStyle,
 }) => {
-  const { t } = useTranslation();
-
   if (!data && !error) {
     return isWaitingInput ? (
       <CentrateView style={{ ...loadWrapperStyle }}>
@@ -24,7 +21,7 @@ export const LoadAndError = ({
       <CentrateView style={{ ...loadWrapperStyle }}>
         <ActivityIndicator
           size="small"
-          color={color || COMMON_FIFTH_COLOR}
+          color={color || FIRST_COLOR}
           size={"large"}
         />
       </CentrateView>
@@ -34,9 +31,7 @@ export const LoadAndError = ({
   if (error || !data) {
     return (
       <CentrateView>
-        <Text style={{ color: COMMON_ERROR_COLOR }}>
-          {t("general.errorOccoured")}
-        </Text>
+        <Text style={{ color: COMMON_ERROR_COLOR }}>{"Error"}</Text>
       </CentrateView>
     );
   }
