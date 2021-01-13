@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { View, Text, Linking } from "react-native";
+import { COMMON_THIRD_COLOR } from "constants/palette";
 import { Badge } from "components/Badge";
+import { useTranslation } from "react-i18next";
 import { TouchElement } from "components/TouchElement";
 import { NewsImage, InfoWrapper, ViewMoreButtonWrapper } from "./styles";
-import { Icon } from "react-native-elements";
 
 export const NewsRow = ({ title, description, image, url, color }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const numberOfLinesText = isOpen ? 10 : 3;
+  const { t } = useTranslation();
+  const numberOfLines = isOpen ? 10 : 3;
 
   return (
     <TouchElement onPress={() => setIsOpen(!isOpen)}>
@@ -22,9 +24,16 @@ export const NewsRow = ({ title, description, image, url, color }) => {
             }}
           >
             <InfoWrapper>
-              <Text style={{ fontSize: 14 }} numberOfLines={numberOfLinesText}>
+              <Text style={{ fontSize: 14 }} numberOfLines={numberOfLines}>
                 {description}
               </Text>
+              {/* <Text
+                style={{
+                  marginTop: 5,
+                  fontSize: 9,
+                  color,
+                }}
+              >{`${minReading} min`}</Text> */}
             </InfoWrapper>
             <View
               style={{
@@ -35,33 +44,14 @@ export const NewsRow = ({ title, description, image, url, color }) => {
             </View>
           </View>
           {isOpen && (
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                marginTop: 5,
-              }}
-            >
-              <View style={{ alignSelf: "center", marginRight: 10 }}>
-                <TouchElement onPress={() => Linking.openURL(url)}>
-                  <ViewMoreButtonWrapper color={color}>
-                    <Icon name="exit-to-app" color={color} />
-                    <Text style={{ fontSize: 14, color: color }}>
-                      {"View more"}
-                    </Text>
-                  </ViewMoreButtonWrapper>
-                </TouchElement>
-              </View>
-              <View style={{ alignSelf: "center" }}>
-                <TouchElement onPress={() => Linking.openURL(url)}>
-                  <ViewMoreButtonWrapper color={color}>
-                    <Icon name="bookmark" color={color} />
-                    <Text style={{ fontSize: 14, color: color }}>
-                      {"Save this"}
-                    </Text>
-                  </ViewMoreButtonWrapper>
-                </TouchElement>
-              </View>
+            <View style={{ width: 200, alignSelf: "center" }}>
+              <TouchElement onPress={() => Linking.openURL(url)}>
+                <ViewMoreButtonWrapper color={color}>
+                  <Text style={{ fontSize: 14, color: COMMON_THIRD_COLOR }}>
+                    {t("news.viewMore")}
+                  </Text>
+                </ViewMoreButtonWrapper>
+              </TouchElement>
             </View>
           )}
         </View>
