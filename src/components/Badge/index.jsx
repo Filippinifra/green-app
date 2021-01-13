@@ -1,16 +1,15 @@
 import React from "react";
 import { View } from "react-native";
 import { ShadowStyle } from "components/Shadow";
-import { BadgeWrapper, HeaderWrapper, Title, Line } from "./styles";
+import { BadgeWrapper, HeaderWrapper, Title } from "./styles";
 
-export const Badge = ({ children, title, color, numberOfLines }) => (
+export const Badge = ({ children, title, color }) => (
   <View style={ShadowStyle.ShadowBox}>
     <BadgeWrapper color={color}>
       <View>
         <HeaderWrapper color={color} s>
-          <Title numberOfLines={numberOfLines}>{title}</Title>
+          <Title>{title}</Title>
         </HeaderWrapper>
-        <Line />
         {children}
       </View>
     </BadgeWrapper>
